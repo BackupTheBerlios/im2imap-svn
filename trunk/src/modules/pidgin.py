@@ -35,8 +35,6 @@ class pidgin2imap:
 			return false
 		
 		for protocol in protocols:
-			if protocol=="icq":
-				continue
 			accounts = os.listdir(os.path.join(self.logdir,protocol))
 			for account in accounts:
 				rosterItems = os.listdir(os.path.join(self.logdir,protocol,account))
