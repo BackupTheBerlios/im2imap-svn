@@ -1,0 +1,9 @@
+[Imap]
+user=
+
+password=
+
+# only tls-connections !
+server=
+
+mailbox=
