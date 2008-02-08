@@ -120,7 +120,7 @@ if client == "pidgin":
 	i=imap(imapUser,imapPassword,imapServer,imapMailbox)
 	
 	if DEBUG: print "client is pidgin"
-	g=pidgin2imap(i)
+	g=pidgin2imap(i,DEBUG)
 	g.parseLogs()
 
 if client == "psi":
@@ -130,7 +130,7 @@ if client == "psi":
 	i=imap(imapUser,imapPassword,imapServer,imapMailbox)
 	
 	if DEBUG: print "client is psi"
-	p=psi2imap(i)
+	p=psi2imap(i,DEBUG)
 	p.parseLogs()
 	
 if client == "kopete":
@@ -139,6 +139,6 @@ if client == "kopete":
 	i=imap(imapUser,imapPassword,imapServer,imapMailbox)
 	
 	if DEBUG: print "client is kopete"
-	k=kopete2imap(i)
+	k=kopete2imap(i,DEBUG)
 	
 	k.parseLogs()

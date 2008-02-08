@@ -10,7 +10,6 @@ import glob
 
 
 class kopete2imap:
-	print DEBUG
 	logdir="~/.kde/share/apps/kopete/logs/"
 	logdir=os.path.expanduser(logdir)
 
@@ -24,17 +23,17 @@ class kopete2imap:
 	
 	fileHash = persistantData["filehash"]
 
-	#print fileList
 
-	def __init__(self,imapObject):
+	def __init__(self,imapObject,debug):
 		random.seed(None)
 		self.imapObject = imapObject
+		self.debug = debug
 
 	def parseLogs(self):
 		if not os.path.exists(self.logdir):
 			return false
 
-		print self.logdir
+		if self.debug: print "[KOPETE] LOGFILEDIR: " +  self.logdir
 		protocols = []
 		protocols = os.listdir(self.logdir)
 		
@@ -63,7 +62,7 @@ class kopete2imap:
 							self.fileHash[fileName][1] = os.path.getsize(fileName)
 
 					else:
-						print "filename not in List"
+						if self.debug: print "[KOPETE] filename not in List"
 						self.fileHash[fileName]=[int(random.random()*1000000000),os.path.getsize(fileName)]
 						in_file = open(fileName,"r")
 						body=""

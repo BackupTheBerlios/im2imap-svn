@@ -19,14 +19,15 @@ class pidgin2imap:
 	
 	fileList = persistantData["filelist"]
 
-	def __init__(self,imapObject):
+	def __init__(self,imapObject,debug):
 		self.imapObject = imapObject
+		self.debug = debug
 
 	def parseLogs(self):
 		if not os.path.exists(self.logdir):
 			return false
 
-		print self.logdir
+		if self.debug: print "[PIDGIN] LOGFILEDIR: " + self.logdir
 		protocols = []
 		protocols = os.listdir(self.logdir)
 		
@@ -50,7 +51,7 @@ class pidgin2imap:
 						if fileName in self.fileList:
 							pass
 						else:
-							print "filename not in List"
+							if seld.debug: print "[PIDGIN] filename not in List"
 							self.fileList.append(fileName)
 							in_file = open(fileName,"r")
 							body = ""
