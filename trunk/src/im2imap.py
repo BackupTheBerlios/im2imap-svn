@@ -28,6 +28,7 @@ import time
 
 sys.path.append("/usr/lib/im2imap/modules")
 
+DEBUG = False
 
 class imap:
 	imapObject = None
@@ -81,17 +82,24 @@ config.readfp(open(fname))
 #parse commandline arguments
 try:
 	long_opts=["client"]
-	opts, args = getopt.getopt(sys.argv[1:], "c:",long_opts )
+	opts, args = getopt.getopt(sys.argv[1:], "c:d" )
 except getopt.GetoptError:
 	sys.exit(2)
 
 for option, argument in opts:
-	if option in ("-c", "--client"):
+	
+	# -c , --client: defines which logfiles should be archived (for example "psi","pidgin")
+	if option in ("-c"):
 		if argument not in supportedClients:
 			print "%s is not supported." % argument
 			sys.exit(1)
 		else:
 			client = argument
+
+	# -d , --debug: enable debug output
+	if option in ("-d"):
+			DEBUG = True
+	
 
 #no client was specified, exit
 if  client not in supportedClients:
@@ -106,14 +114,12 @@ imapMailbox = config.get("Imap","mailbox")
 imapServer = config.get("Imap","server")
 
 
-
-
 if client == "pidgin":
 	from pidgin import pidgin2imap
 	
 	i=imap(imapUser,imapPassword,imapServer,imapMailbox)
 	
-	print "client is pidgin"
+	if DEBUG: print "client is pidgin"
 	g=pidgin2imap(i)
 	g.parseLogs()
 
@@ -123,7 +129,7 @@ if client == "psi":
 	
 	i=imap(imapUser,imapPassword,imapServer,imapMailbox)
 	
-	print "client is psi"
+	if DEBUG: print "client is psi"
 	p=psi2imap(i)
 	p.parseLogs()
 	
@@ -132,7 +138,7 @@ if client == "kopete":
 	
 	i=imap(imapUser,imapPassword,imapServer,imapMailbox)
 	
-	print "client is kopete"
+	if DEBUG: print "client is kopete"
 	k=kopete2imap(i)
 	
 	k.parseLogs()
