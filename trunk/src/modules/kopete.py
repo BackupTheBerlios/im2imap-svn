@@ -53,18 +53,20 @@ class kopete2imap:
 					if self.fileHash.has_key(fileName):
 						if os.path.getsize(fileName) > self.fileHash[fileName][1]:
 							self.imapObject.delete(self.fileHash[fileName][0])
-	
-							in_file = open(fileName,"r")
+							
+
+							in_file = open(fileName[:-4],"r")
 							body=""
 							for line in in_file:
 								body+=line
+
 							self.imapObject.log2imap(contactName,account,"[kopete]",body,datetime.datetime(2000,1,1),self.fileHash[fileName][0])
 							self.fileHash[fileName][1] = os.path.getsize(fileName)
 
 					else:
 						if self.debug: print "[KOPETE] filename not in List"
 						self.fileHash[fileName]=[int(random.random()*1000000000),os.path.getsize(fileName)]
-						in_file = open(fileName,"r")
+						in_file = open(fileName[:-4],"r")
 						body=""
 						for line in in_file:
 							body+=line
