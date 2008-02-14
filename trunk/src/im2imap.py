@@ -34,9 +34,16 @@ class imap:
 	imapObject = None
 
 	def __init__(self,user,pwd,server,mailbox):
+		self.mailbox = mailbox
 		self.imapObject = imaplib.IMAP4_SSL(server)
 		self.imapObject.login(user,pwd)
-		self.imapObject.select(mailbox)
+		
+		# check if mailbox exists
+		returnVal = self.imapObject.select(mailbox)
+		if returnVal[0] == "NO":
+			#create mailbox
+			self.imapObject.create(mailbox)	
+			
 
 	def log2imap(self,headerFrom,headerTo,subject,body,date,id):
 		if not id == None:
@@ -45,7 +52,7 @@ class imap:
 			mail = "From: %s\nTo: %s\nSubject: %s\nDate: %s\n\n" % (headerFrom,headerTo,subject,date.ctime())
 			
 		mail += "\n" + body
-		self.imapObject.append("im_mailbox",None,time.time(),mail)
+		self.imapObject.append(self.mailbox,None,time.time(),mail)
 
 	def delete(self,id):
 		id=str(int(id))
