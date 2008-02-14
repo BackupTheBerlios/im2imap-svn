@@ -25,7 +25,8 @@ class pidgin2imap:
 
 	def parseLogs(self):
 		if not os.path.exists(self.logdir):
-			return false
+			print "No logfiles available"
+			return False
 
 		if self.debug: print "[PIDGIN] LOGFILEDIR: " + self.logdir
 		protocols = []
@@ -33,7 +34,7 @@ class pidgin2imap:
 		
 		if len(protocols) == 0:
 			print "no protocols available"
-			return false
+			return False
 		
 		for protocol in protocols:
 			accounts = os.listdir(os.path.join(self.logdir,protocol))
@@ -51,7 +52,7 @@ class pidgin2imap:
 						if fileName in self.fileList:
 							pass
 						else:
-							if seld.debug: print "[PIDGIN] filename not in List"
+							if self.debug: print "[PIDGIN] filename not in List"
 							self.fileList.append(fileName)
 							in_file = open(fileName,"r")
 							body = ""
