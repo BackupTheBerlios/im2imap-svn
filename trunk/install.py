@@ -14,7 +14,7 @@ from os.path import join
 
 import os
 
-#Warning! This directory will be deleted
+#Warning! This directory will be deleted (if it exists)
 LIB_DIR="/usr/lib/im2imap"
 
 print "Welcome to the im2imap Installer.This is free software,you can (re)distribute it under the terms of the GPL\n";
@@ -26,7 +26,9 @@ if os.geteuid() <> 0:
 
 #copy our own modules to /usr/lib/im2imap
 #delete complete folder to prevent problems with old versions
-shutil.rmtree(LIB_DIR)
+
+if os.path.isdir(LIB_DIR): 
+	shutil.rmtree(LIB_DIR)
 
 if not os.path.isdir(LIB_DIR):
 	os.mkdir(LIB_DIR)
