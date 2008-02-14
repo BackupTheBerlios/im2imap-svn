@@ -31,15 +31,16 @@ class kopete2imap:
 
 	def parseLogs(self):
 		if not os.path.exists(self.logdir):
-			return false
+			print "No logfiles available"
+			return False
 
 		if self.debug: print "[KOPETE] LOGFILEDIR: " +  self.logdir
 		protocols = []
 		protocols = os.listdir(self.logdir)
 		
 		if len(protocols) == 0:
-			print "no protocols available"
-			return false
+			print "No protocols available"
+			return False
 		
 		for protocol in protocols:
 			accounts =  os.listdir(os.path.join(self.logdir,protocol))
