@@ -47,11 +47,12 @@ class imap:
 
 	def log2imap(self,headerFrom,headerTo,subject,body,date,id):
 		if not id == None:
-			mail = "From: %s\nTo: %s\nSubject: %s\nDate: %s\nCC: %s\n\n" % (headerFrom,headerTo,subject,date.ctime(),id)
+			mail = "From: %s\nTo: %s\nSubject: %s\nDate: %s\nCC: %s\n" % (headerFrom,headerTo,subject,date.ctime(),id)
 		else:
-			mail = "From: %s\nTo: %s\nSubject: %s\nDate: %s\n\n" % (headerFrom,headerTo,subject,date.ctime())
+			mail = "From: %s\nTo: %s\nSubject: %s\nDate: %s\n" % (headerFrom,headerTo,subject,date.ctime())
 			
-		mail += "\n" + body
+		mail += "Content-Type: text/plain; charset=UTF-8"
+		mail += "\n\n" + body
 		self.imapObject.append(self.mailbox,None,time.time(),mail)
 
 	def delete(self,id):
