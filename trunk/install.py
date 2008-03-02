@@ -14,8 +14,16 @@ from os.path import join
 
 import os
 
+DEST_DIR = ""
+
+if len(sys.argv) > 1 and os.path.isdir(sys.argv[1]):
+	DEST_DIR = sys.argv[1]
+
 #Warning! This directory will be deleted (if it exists)
-LIB_DIR="/usr/lib/im2imap"
+LIB_DIR = DEST_DIR + "/usr/lib/im2imap"
+
+
+BIN_DIR = DEST_DIR + "/usr/bin/"
 
 print "Welcome to the im2imap Installer.This is free software,you can (re)distribute it under the terms of the GPL\n";
 
@@ -31,7 +39,7 @@ if os.path.isdir(LIB_DIR):
 	shutil.rmtree(LIB_DIR)
 
 if not os.path.isdir(LIB_DIR):
-	os.mkdir(LIB_DIR)
+	os.makedirs(LIB_DIR)
 
 
 #copy files
@@ -41,8 +49,8 @@ shutil.copytree("src/tools",LIB_DIR + "/tools")
 #os.chmod("/etc/init.d/kabbit",0711)
 
 #our main executable
-shutil.copyfile("./src/im2imap.py","/usr/bin/im2imap")
-os.chmod("/usr/bin/im2imap",0755)
+shutil.copyfile("./src/im2imap.py",BIN_DIR +"im2imap")
+os.chmod(BIN_DIR + "im2imap",0755)
 
 print "Installation successful!"
 
