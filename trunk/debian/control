@@ -1,0 +1,17 @@
+Source: im2imap
+Section: utils
+Priority: extra
+Maintainer: Sebastian Moors <mauser@smoors.de>
+Build-Depends: debhelper (>= 5), python2.4
+Standards-Version: 3.7.2
+
+
+Package: im2imap
+Architecture: i386
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: archives instant messenger logs on imap folders
+im2imap stores your instant messenging logfiles on your favourite imap server.
+Supported clients:
+	* psi
+	* kopete
+	* pidgin
