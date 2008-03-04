@@ -1,0 +1,12 @@
+[Imap]
+
+#your imap-username and password
+user=johndoe
+password=secret
+
+#imap-server 
+#just SSL capable servers are supported !!
+server=myimapserver.tld
+
+#the mailbox where im2imap stores your conversations
+mailbox=im_mailbox
