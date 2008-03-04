@@ -26,7 +26,7 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE)
+	#$(MAKE)
 	#docbook-to-man debian/im2imap.sgml > im2imap.1
 
 	touch $@
@@ -37,7 +37,7 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
-	$(MAKE) clean
+	#$(MAKE) clean
 
 	dh_clean 
 
@@ -46,10 +46,12 @@ install: build
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
+	dh_install
 
 	# Add here commands to install the package into debian/im2imap.
-	$(MAKE) DESTDIR=$(CURDIR)/debian/im2imap install
-
+	#$(CURDIR)/install.py DESTDIR=$(CURDIR)/debian/im2imap 
+	#install src/im2imap.py $(DESTDIR)/usr/bin/im2imap
+	#install src/modules/psi.py $(DESTDIR)/usr/share/modules/
 
 # Build architecture-independent files here.
 binary-indep: build install

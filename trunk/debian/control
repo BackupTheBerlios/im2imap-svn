@@ -10,8 +10,8 @@ Package: im2imap
 Architecture: i386
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: archives instant messenger logs on imap folders
-im2imap stores your instant messenging logfiles on your favourite imap server.
-Supported clients:
+ im2imap stores your instant messenging logfiles on your favourite imap server.
+ Supported clients:
 	* psi
 	* kopete
 	* pidgin
