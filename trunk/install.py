@@ -20,7 +20,7 @@ if len(sys.argv) > 1 and os.path.isdir(sys.argv[1]):
 	DEST_DIR = sys.argv[1]
 
 #Warning! This directory will be deleted (if it exists)
-LIB_DIR = DEST_DIR + "/usr/lib/im2imap"
+LIB_DIR = DEST_DIR + "/usr/share/im2imap"
 
 
 BIN_DIR = DEST_DIR + "/usr/bin/"
@@ -32,7 +32,7 @@ if os.geteuid() <> 0:
 	sys.exit(0)
 
 
-#copy our own modules to /usr/lib/im2imap
+#copy our own modules to /usr/share/im2imap
 #delete complete folder to prevent problems with old versions
 
 if os.path.isdir(LIB_DIR): 
@@ -43,6 +43,7 @@ if not os.path.isdir(LIB_DIR):
 
 
 #copy files
+shutil.copytree("src/examples",LIB_DIR + "/examples" )
 shutil.copytree("src/modules",LIB_DIR + "/modules" )
 shutil.copytree("src/tools",LIB_DIR + "/tools")
 

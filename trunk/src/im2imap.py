@@ -25,8 +25,9 @@ import shelve
 import getopt
 import ConfigParser
 import time
+import shutil
 
-sys.path.append("/usr/lib/im2imap/modules")
+sys.path.append("/usr/share/im2imap/modules")
 
 DEBUG = False
 
@@ -80,7 +81,8 @@ config = ConfigParser.ConfigParser()
 fname = os.path.expanduser("~/.im2imaprc")
 
 if not os.path.isfile(fname):
-	print fname + "does not exists, creating sample configuration"
+	print fname + " does not exist, creating sample configuration\n"
+	shutil.copyfile("/usr/share/im2imap/examples/sample-im2imaprc",fname)
 
 
 config.readfp(open(fname))
