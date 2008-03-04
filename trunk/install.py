@@ -46,7 +46,6 @@ if not os.path.isdir(LIB_DIR):
 shutil.copytree("src/modules",LIB_DIR + "/modules" )
 shutil.copytree("src/tools",LIB_DIR + "/tools")
 
-#os.chmod("/etc/init.d/kabbit",0711)
 
 #our main executable
 shutil.copyfile("./src/im2imap.py",BIN_DIR +"im2imap")
